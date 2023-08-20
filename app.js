@@ -47,3 +47,31 @@ app.listen(port, () => {
   console.log(`Servidor escuchando en el puerto ${port}`);
 });
 
+
+app.get('/coordenadas/:lat/:lng', async(req, res) => {
+  const axios = require('axios');
+  const lat = req.params.lat;
+  const lng = req.params.lng;
+
+  const options = {
+    method: 'GET',
+    url: 'https://google-maps-geocoding.p.rapidapi.com/geocode/json',
+    params: {
+      latlng: `${lat},${lng}`,
+      language: 'es'
+    },
+    headers: {
+      'X-RapidAPI-Key': 'd269501636mshdb4433084ff6426p101263jsn8da775a0098c',
+      'X-RapidAPI-Host': 'google-maps-geocoding.p.rapidapi.com'
+    }
+  };
+
+  try {
+    const response = await axios.request(options);
+    console.log(response.data);
+    res.json(response.data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred' });
+  }
+});

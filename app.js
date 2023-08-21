@@ -48,10 +48,10 @@ app.listen(port, () => {
   console.log(`Servidor escuchando en el puerto ${port}`);
 });
 
-
+// Obtiene la direccion desde coordenadas
 app.get('/coordenadas', async(req, res) => {
-  const lat = req.query.lat; // Obtén la latitud de la consulta
-  const lng = req.query.lng; // Obtén la longitud de la consulta
+  const lat = req.query.lat;
+  const lng = req.query.lng; 
   const apiUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`;
 
   try {

@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const axios = require('axios');
 const port = 3000;
-
+const path = require('path');
 /*Se implementara una base de datos en firebase para las consultas de las rutas establecidas*/
 const routes = [
   {
@@ -83,6 +83,29 @@ app.get('/direccion', async (req, res) => {
     console.error(error);
     res.status(500).json({ error: 'Ocurrió un error' });
   }
+
+
 });
+
+//Guardar ubicacion de alguna ruta con ayuda de un formulario
+app.post('/guardar-ubicacion', (req, res) => {
+  const nuevaUbicacion = req.body;
+
+  // Realiza una solicitud POST directamente a la URL de Firebase
+  axios.post('https://rutasciclista2023-default-rtdb.firebaseio.com/data.json', nuevaUbicacion)
+    .then(response => {
+      res.status(201).json({ message: 'Ubicación guardada exitosamente' });
+    })
+    .catch(error => {
+      console.error(error);
+      res.status(500).json({ error: 'Ocurrió un error al guardar la ubicación' });
+    });
+});
+
+app.get('/', (req, res) => {
+  const indexPath = path.join(__dirname, 'index.html'); 
+  res.sendFile(indexPath);
+});
+
 
 

@@ -1,0 +1,21 @@
+[
+    {
+      "id": 1,
+      "name": "Ruta Escénica",
+      "location": "Montañas",
+      "difficulty": "Fácil"
+    },
+    {
+      "id": 2,
+      "name": "Ruta del Desafío",
+      "location": "Bosque",
+      "difficulty": "Moderada"
+    },
+    {
+      "id": 3,
+      "name": "Ruta Portete",
+      "location": "Bosque",
+      "difficulty": "Fácil"
+    }
+  ]
+  
